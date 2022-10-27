@@ -4,9 +4,13 @@
 </header>
 
 <h1>Welcome to 
-<strong>Bookers</strong>!!</h1>
+<span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+<strong>Bookers</strong>!!
+</h1>
 
-<p>In<strong>Bookers</strong>,</p>
+<p>In
+<span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+<strong>Bookers</strong>,</p>
 
 <p>you can share and exchange tour opinions , 
 inpressions , and emotions</p>
@@ -15,10 +19,10 @@ inpressions , and emotions</p>
 
 <footer>
   
-  <div><%= link_to "Log in", new_user_session_path %></div>
-  <div><%= link_to "Sign up", new_user_registration_path %></div>
+  <div class="row"><%= link_to "Log in", new_user_session_path, class:"btn btn-primary col-xs-10 col-xs-offset-1"%></div>
+  <div class="row"><%= link_to "Sign up", new_user_registration_path, class:"btn btn-success col-xs-10 col-xs-offset-1" %></div>
   
-  <p>CopyRight Infratop.inc</p>
+  
   
 </footer>
 
