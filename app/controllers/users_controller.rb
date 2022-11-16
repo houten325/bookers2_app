@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
+  
+  def new
+    @book = Book.new
+  end
+  
   def show
     @user = User.find(params[:id])
     @book = Book.new
-    @books = Book.where(user_id: @user.id)
+    @books = @user.books
   end
   
   def index
@@ -32,9 +37,13 @@ class UsersController < ApplicationController
   end
   
   private
+  
+  def book_params
+        params.require(:book).permit(:title, :body)
+  end
 
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :profile_image, :introduction)
   end
   
 end
