@@ -6,20 +6,32 @@
  </ul>
 <% end %>
 
-<h2>User info</h2>
-<%= form_for(@user, url: user_path(current_user.id)) do |f| %>
+<div class="container">
+ <div class="row">
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+   <h2>User info</h2>
+   <%= form_with model: @user, url: user_path,method: :post do |f| %>
+   <div class="form-group">
+    <label for="user_name">Name</label>
+    <input class="form-control name" type="text" name="user[name]" id="user_name">
+   </div>
+   
+   <div class="form-group">
+    <label for="user_image">Image</label>
+    <input class="form-control-file user_image" accept="image/*" type="file" name="user[profile_image]" id="user_profile_image">
+   </div>
+   
+   <div class="form-group">
+    <label for="user_introduction">introduction</label>
+    <textarea class="form-control introduction" name="user[introduction]" id="user_introduction"></textarea>
+   </div>
+   
+   <div class="form-group">
+    <input type="submit" name="commit" value="Update User" class="btn btn-secondary" data-disable-with="Update User">
+   </div>
 
-<h4>Name</h4>
-<%= f.text_field :name %>
+   <% end %>
 
-<h4>Image</h4>
-<%= f.attachment_field :profile_image %>
-
-<h4>introduction</h4>
-<%= f.text_area :introduction %>
-
-<%= f.submit 'Update User' %>
-
-<% end %>
-
+  </div>
+ </div>
 </div>
