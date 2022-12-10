@@ -1,18 +1,40 @@
-<h1>Editing Book</h1>
-<%= form_with model:(@book, url: book_path(@book.id)) do |f| %>
+<% if @book.errors.any? %>
+<%= @book.errors.count %>errors prohibited this obj from being saved:
+ <ul>
+<% @book.errors.full_messages.each do |message| %>
+ <li><%= message %></li>
+  <% end %>
+ </ul>
+<% end %>
 
- <h4>Title</h4>
-  <%= f.text_field :title,class:"col-xs-12" %>
 
- <h4>Opinion</h4>
-  <%= f.text_area :body,class:"col-xs-12" %>
- 
- <nav>
-   <%= f.submit 'Update Book',class: "col-xs-12 btn btn-primary" %>
-  </nav>
- <% end %>
- 
- <%= link_to "show", book_psth(@book.id) %>
+<div class="container">
+ <div class="row">
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+   <h2>Editing Book</h2>
+   <%= form_with model: @book, url: book_path,method: :patch do |f| %>
+
+   <div class="form-group">
+    <label for="book_title">Title</label>
+    <%= f.text_field :title, class:"form-control" %>
+   </div>
+
+   <div class="form-group">
+    <label for="book_opinion">Opinion</label>
+    <%= f.text_area :body, class:"form-control" %>
+   </div>
+
+   <div class="form-group">
+    <input type="submit" name="commit" value="Update Book" class="btn btn-success" data-disable-with="Update Book">
+   </div>
+
+   <% end %>
+
+
+ <%= link_to "show", book_path(@book.id) %>
+ |
  <%= link_to "Back", books_path %>
- 
- </nav>
+
+   </div>
+ </div>
+</div>
