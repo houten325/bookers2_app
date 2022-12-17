@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!
-  before_action :ensure_current_user, {only: [:edit,:update,:destroy]}
+  before_action :authenticate_user!, except: [:top]
+  before_action :ensure_current_user, only: [:edit,:update,:destroy]
 
 
   def new
@@ -10,8 +10,7 @@ class BooksController < ApplicationController
   def show
     @newbook = Book.new
     @book = Book.find(params[:id])
-    @user = current_user
-
+    
   end
 
   def index
@@ -40,7 +39,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      flash[:notice]="Book was succcessfully update."
+      flash[:notice]="Book was successfully update."
       redirect_to book_path(@book.id)
     else
       render :edit
@@ -70,5 +69,7 @@ class BooksController < ApplicationController
         redirect_to books_path
      end
     end
+    
+    
 
 end
