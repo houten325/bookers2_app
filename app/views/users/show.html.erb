@@ -7,19 +7,16 @@
  </ul>
 <% end %>
 
-<div class="box">
 
-<div class= "containar px-5 px- sm-0">
+<div class= "container px-5 px-sm-0">
  <div class="row">
   <div class="col-md-3">
 <h2>User info</h2>
-<thead>
+<table class="table">
+ <tbody>
   <tr>
     <%= image_tag @user.get_profile_image(100,100) %>
   </tr>
-</thead>
-<table class="table">
-<tbody>
   <tr></tr>
   <tr>
     <th>name</th>
@@ -29,19 +26,19 @@
     <th>Introduction</th>
     <th><%= @user.introduction %></th>
   </tr>
-  </table>
-  
+  </tbody>
+ </table>
   <div class="row">
-    <%= link_to edit_user_path(current_user), class:"btn btn-outline-secondary btn-block" do %>
+    <%= link_to edit_user_path(@user), class:"btn btn-outline-secondary btn-block" do %>
     <i class="fas fa-user-cog"></i>
     <% end %>
   </div>
-</tbody>
+
 
 
 <%= form_with model: @book, url: books_path,method: :post do |f| %>
  <h2 class="mt-3">New book</h2>
- 
+
  <div class="form-group">
   <h4>Title</h4>
    <%= f.text_field :title %>
@@ -57,7 +54,7 @@
  </div>
  <% end %>
  </div>
- 
+
  <div class ="col-md-8 offset-md-1">
    <h2>Books</h2>
    <table class = 'table table-hover table-inverse'>
@@ -73,9 +70,9 @@
      <% @books.each do |book| %>
      <tr>
        <td><%= link_to user_path(book.user_id) do %>
-       <%= image_tag @user.get_profile_image(100,100) %></td>
+       <%= image_tag @user.get_profile_image(100,100) %>
        <% end %>
-       
+       </td>
        <td><%=link_to book.title, book_path(book.id)%></td>
        <td><%= book.body %></td>
      </tr>
@@ -83,5 +80,4 @@
      </tbody>
    </table>
    </div>
- </div>
  </div>
